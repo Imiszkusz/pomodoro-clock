@@ -1,0 +1,203 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, div {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+/*
+=======================================================
+Main Styles
+=======================================================
+*/
+
+body {
+  font-family: 'Signika Negative', sans-serif;
+  background-color: rgb(188,244,188);
+}
+
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 3.1rem;
+  text-align: center;
+  padding: .5rem;
+  margin: 1rem 0 2rem 0;
+  background-color: rgba(0,103,0, 0.5);
+}
+
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+/*
+=======================================================
+Specific Styles
+=======================================================
+*/
+
+
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+.reset-btn-wrapper {
+  position: relative;
+  width: 5rem;
+  height: 2rem;
+  top: 1rem;
+  padding: .25rem 0 0 0;
+  margin: 0 auto;
+  background-color: rgb(0,103,0);
+  text-align: center;
+  border: 2px solid rgb(0,52,0);
+  border-radius: 25%;
+}
+
+
+.pomodoro {
+  width: 12rem;
+  height: 12rem;
+  position: relative;
+  margin: 0 auto;
+  background-color: rgb(205,0,0);
+  border-radius: 100%;
+  border: 2px solid rgb(155,0,0);
+}
+
+
+.length-set-wrapper {
+  position: relative;
+  top: 1.5rem;
+}
+
+
+.length-set-title, .length-set-timer {
+  text-align: center;
+  padding: .1rem;
+}
+
+
+.length-set-timer {
+  font-size: 2rem;
+}
+
+.main-timer {
+  position: relative;;
+  top: 3rem;
+  text-align: center;
+  font-size: 3rem;
+}
+
+
+
+
+/*
+================================================
+Media Querys
+================================================
+*/
+
+@media (min-width: 800px){
+  
+  h1{
+    font-size: 3rem;
+  }
+  
+  
+  .reset-btn-wrapper{
+    width: 10rem;
+    height: 4rem;
+    top: 2.4rem;
+  }
+  
+  
+  .reset-btn {
+    font-size: 1.5rem;
+  }
+  
+  
+  .pomodoro {
+    width: 24rem;
+    height: 24rem;
+  }
+  
+  
+  .length-set-wrapper{
+    top: 3rem;
+  }
+  
+  
+  .length-set-title, .lengt-set-time {
+    padding: .2rem;
+  }
+  
+  
+  .length-set-title{
+    font-size: 2rem;
+  }
+  
+  
+  .length-set-timer {
+    font-size: 4rem;
+  }
+  
+  
+  .main-timer {
+    top: 6rem;
+    font-size: 6rem;
+  }
+}
