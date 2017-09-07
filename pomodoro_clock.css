@@ -78,6 +78,18 @@ Main Styles
   }
 
 
+  @keyframes flash {
+    0%, 100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+      background-color: white;
+    }
+  }
+
+
   .container {
     width: 100%;
     margin: 0;
@@ -96,6 +108,16 @@ Main Styles
     text-align: center;
     border: 2px solid rgb(0,52,0);
     border-radius: 25%;
+  }
+
+
+  .reset-btn-wrapper:hover {
+    cursor: pointer;
+  }
+
+
+  .reset-btn-wrapper:active {
+    top: 1.55rem;
   }
 
 
@@ -132,13 +154,47 @@ Main Styles
     font-size: 2rem;
   }
 
+
+  .break-wrapper {
+    display: none;
+    position: relative;
+    top: 2.75rem;
+    font-size: 1.25rem;
+    color: yellow;
+    text-align: center;
+  }
+
+
+  .break-wrapper:before, .break-wrapper:after {
+    display: none;
+    content: "";
+    background-color: yellow;
+    height: 2px;
+    width: 1.7rem;
+    vertical-align: middle;
+    margin: 0 .5rem;
+  }
+
+
+  .break-wrapper-show:before, .break-wrapper-show:after{
+    display: inline-block;
+  }
+
+
   .main-timer {
     position: relative;;
-    top: 3rem;
+    top: 2.5rem;
     text-align: center;
     font-size: 2.5rem;
     padding: .5rem 0;
     background-color: rgb(139,0,0);
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+  }
+
+
+  .main-timer:hover {
+    cursor: pointer;
   }
 
 
@@ -166,6 +222,11 @@ Media Querys
     width: 10rem;
     height: 4rem;
     top: 2.4rem;
+  }
+
+
+  .reset-btn-wrapper:active {
+    top: 2.75rem;
   }
   
   
@@ -197,6 +258,18 @@ Media Querys
   
   .length-set-timer {
     font-size: 4rem;
+  }
+
+
+  .break-wrapper {
+    top: 6.5rem;
+    font-size: 2.5rem;
+  }
+
+
+  .break-wrapper:before, .break-wrapper:after {
+    height: 3px;
+    width: 3.7rem;
   }
   
   
