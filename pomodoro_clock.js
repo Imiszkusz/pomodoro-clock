@@ -134,6 +134,8 @@ resetBtn.addEventListener('click', function reset(){
   var sessLNum = Number(sessionLength.textContent.slice(1, -1));
   
   startPauseBtn.style['animation-name'] = 'none';
+  breakWrapper.style.display = 'none';
+  breakWrapper.classList.remove('break-wrapper-show');
 
   if(startPause.dataset.session == 'on') {
       clearInterval(sessionOn);

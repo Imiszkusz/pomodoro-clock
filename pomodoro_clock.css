@@ -203,6 +203,24 @@ Main Styles
   }
 
 
+  #portfolio-btn {
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    margin: 1rem;
+    padding: .5rem;
+    color: white;
+    background-color: rgba(1,50,32,0.7);
+    border: 2px solid black;
+    z-index: 3;
+  }
+
+
+  #portfolio-btn:hover {
+    text-decoration: none;
+    font-weight: 700;
+  }
+
 
 
 /*
