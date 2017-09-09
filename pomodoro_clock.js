@@ -1,9 +1,9 @@
-const startPause = document.getElementById('pause-link');
-const startPauseBtn = document.querySelector('.main-timer');
-const minusLink = document.getElementById('minus-link');
-const plusLink = document.getElementById('plus-link');
-const resetBtn = document.querySelector('.reset-btn-wrapper');
-const breakWrapper = document.querySelector('.break-wrapper');
+const START_PAUSE = document.getElementById('pause-link');
+const START_PAUSE_BTN = document.querySelector('.main-timer');
+const MINUS_LINK = document.getElementById('minus-link');
+const PLUS_LINK = document.getElementById('plus-link');
+const RESET_BTN = document.querySelector('.reset-btn-wrapper');
+const BREAK_WRAPPER = document.querySelector('.break-wrapper');
 
 
 
@@ -11,19 +11,19 @@ const breakWrapper = document.querySelector('.break-wrapper');
 
 var time = {}; // object that stores the time data
 
-// settomg time obj properties for pageload
-if(startPause.textContent.split(':')[0] !== '00'){
-  time.hours = Number(startPause.textContent.split(':')[0]);     
+// when the page loads first time, it gets the data from the html element content
+if(START_PAUSE.textContent.split(':')[0] !== '00'){
+  time.hours = Number(START_PAUSE.textContent.split(':')[0]);  
  }
 else time.hours = 0; 
-time.minutes = Number(startPause.textContent.split(':')[1])-1;
+time.minutes = Number(START_PAUSE.textContent.split(':')[1])-1;
 time.seconds = 59;
 
 var sessionOn;
 
 
 
-// function for getting minutes' data from user input and updating 'time' obj
+// we need to update the 'time' object with the user input, after hitting the reset btn
 function resetTime(minutes){
 
   this.hours = minutes / 60 >= 1 ? Math.floor(minutes / 60) : 0;
@@ -34,7 +34,7 @@ function resetTime(minutes){
 }
 
 
-// adds a zero before every one digit number in the timer
+
 function addZeroToTime(num){
 
   if(num < 10) num = '0' + num;
@@ -43,11 +43,27 @@ function addZeroToTime(num){
 }
 
 
-//updates the time numbers to 2-character string format 
+// html textcontent easier update with a string of the whole time value
 function timeToString(time){
 
   var str = time.hours ? addZeroToTime(time.hours) + ':' + addZeroToTime(time.minutes) + ':' + addZeroToTime(time.seconds) : addZeroToTime(time.minutes) + ':' + addZeroToTime(time.seconds);
-  startPause.textContent = str;
+  START_PAUSE.textContent = str;
+}
+
+
+
+function changeStyle(sessionon){
+  if(sessionon == 'on'){
+    BREAK_WRAPPER.style.display = 'none';
+    BREAK_WRAPPER.classList.remove('break-wrapper-show');
+    START_PAUSE_BTN.style['animation-name'] = 'flash';
+  }
+
+  else if(sessionon == 'off'){
+    BREAK_WRAPPER.style.display = 'block';
+    BREAK_WRAPPER.classList.add('break-wrapper-show');
+    START_PAUSE_BTN.style['animation-name'] = 'none';
+  }
 }
 
 
@@ -74,33 +90,31 @@ function chSessLength(DOMElement){
 
 
 
-// Event listener for main timer - start / pause session
-startPauseBtn.addEventListener('click', function startOrP(callback){
+/* The setInterval start/end depends on a 'dataset.session' attribute of the html element, which is
+   set to off when the setInterval is off, set to 'on' when the setInterval is on. */
+START_PAUSE_BTN.addEventListener('click', function startOrP(callback){
   
   
   timeToString(time);
 
   var allSeconds = time.hours * 3600 + time.minutes * 60 + time.seconds;
 
-  if(startPause.dataset.session != 'on'){
-    breakWrapper.style.display = 'none';
-    breakWrapper.classList.remove('break-wrapper-show');
-    startPauseBtn.style['animation-name'] = 'flash';
+  if(START_PAUSE.dataset.session != 'on'){
+    changeStyle('on');
     sessionOn = setInterval(updateTimer, 1000);
-    startPause.dataset.session = 'on';
+    START_PAUSE.dataset.session = 'on';
   }
 
-  else if(startPause.dataset.session == 'on'){
-    breakWrapper.style.display = 'block';
-    breakWrapper.classList.add('break-wrapper-show');
-    startPauseBtn.style['animation-name'] = 'none';
+  else if(START_PAUSE.dataset.session == 'on'){
+    changeStyle('off');
     clearInterval(sessionOn);
-    startPause.dataset.session = 'off';
+    START_PAUSE.dataset.session = 'off';
   }
 
 
 
-  //callback function of the setInterval, updates the timer every second
+  /*callback function of the setInterval, the 'time' object and the 'allSeconds' variable is updated 
+    every second */
   function updateTimer(){
 
     if(time.seconds > 0) time.seconds -= 1;
@@ -116,7 +130,7 @@ startPauseBtn.addEventListener('click', function startOrP(callback){
 
     else if((time.hours === undefined || time.hours === 0) && time.minutes === 0 && time.seconds === 0){
       clearInterval(sessionOn);
-      startPause.dataset.session = 'off';
+      START_PAUSE.dataset.session = 'off';
     }
 
     timeToString(time);
@@ -127,19 +141,20 @@ startPauseBtn.addEventListener('click', function startOrP(callback){
 
 
 
-// Event listener of the RESET button
-resetBtn.addEventListener('click', function reset(){
+/* Changes the session length into number type, clears off the style of the timer, calls the 'resetTime'
+   function on the 'time' object, then updates the textcontent of the html */
+RESET_BTN.addEventListener('click', function reset(){
 
   var sessionLength = document.getElementById('session-length');
   var sessLNum = Number(sessionLength.textContent.slice(1, -1));
   
-  startPauseBtn.style['animation-name'] = 'none';
-  breakWrapper.style.display = 'none';
-  breakWrapper.classList.remove('break-wrapper-show');
+  START_PAUSE_BTN.style['animation-name'] = 'none';
+  BREAK_WRAPPER.style.display = 'none';
+  BREAK_WRAPPER.classList.remove('break-wrapper-show');
 
-  if(startPause.dataset.session == 'on') {
+  if(START_PAUSE.dataset.session == 'on') {
       clearInterval(sessionOn);
-      startPause.dataset.session = 'off';
+      START_PAUSE.dataset.session = 'off';
   }
 
   resetTime.call(time, sessLNum);
@@ -149,5 +164,5 @@ resetBtn.addEventListener('click', function reset(){
 })
 
 
-chSessLength(minusLink);
-chSessLength(plusLink);
+chSessLength(MINUS_LINK);
+chSessLength(PLUS_LINK);
